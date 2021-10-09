@@ -1,0 +1,22 @@
+{
+    "name": "mern-shop",
+    "version": "1.0.0",
+    "description": "MERN e-commerce",
+    "main": "server.js",
+    "scripts": {
+        "start": "node backend/server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kryptondv/mern-shop.git"
+    },
+    "author": "kryptondv",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kryptondv/mern-shop/issues"
+    },
+    "homepage": "https://github.com/kryptondv/mern-shop#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
