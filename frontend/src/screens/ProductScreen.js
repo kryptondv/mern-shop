@@ -26,7 +26,7 @@ const ProductScreen = ({ match }) => {
             <Link className="btn btn-light my-3" to="/">
                 Go Back
             </Link>
-            {product.name && (
+            {name && (
                 <Row>
                     <Col md={6}>
                         <Image src={image} alt={name} fluid />
