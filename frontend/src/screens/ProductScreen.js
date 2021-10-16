@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
@@ -6,8 +6,11 @@ import Rating from '../components/Rating';
 import { listProductDetails } from '../actions/productDetailsActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import QtySelector from '../components/QtySelector';
 
 const ProductScreen = ({ match }) => {
+    const [qty, setQty] = useState(1);
+
     const dispatch = useDispatch();
 
     const { id } = match.params;
@@ -64,6 +67,11 @@ const ProductScreen = ({ match }) => {
                                         <Col>{`${inStock ? 'In' : 'Out of'} Stock`}</Col>
                                     </Row>
                                 </ListGroup.Item>
+                                {inStock && (
+                                    <ListGroup.Item>
+                                        <QtySelector qty={qty} setQty={setQty} countInStock={countInStock} />
+                                    </ListGroup.Item>
+                                )}
                                 <ListGroup.Item>
                                     <Button className="btn-block" type="button" disabled={!inStock}>
                                         Add To Cart
