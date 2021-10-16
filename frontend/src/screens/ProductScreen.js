@@ -1,31 +1,31 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
+import { listProductDetails } from '../actions/productDetailsActions';
 
 const ProductScreen = ({ match }) => {
-    const [product, setProduct] = useState({});
+    const dispatch = useDispatch();
 
     const { id } = match.params;
 
+    const productDetails = useSelector(state => state.productDetails);
+    const { loading, error, product } = productDetails;
     const { name, image, rating, numReviews, price, description, countInStock } = product;
 
     const inStock = countInStock > 0;
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            const { data } = await axios.get(`/api/products/${id}`);
-            setProduct(data);
-        };
-        fetchProduct();
-    }, [id]);
+        dispatch(listProductDetails(id));
+    }, [id, dispatch]);
 
     return (
         <>
             <Link className="btn btn-light my-3" to="/">
                 Go Back
             </Link>
+
             {name && (
                 <Row>
                     <Col md={6}>
