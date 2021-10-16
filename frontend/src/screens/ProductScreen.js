@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { listProductDetails } from '../actions/productDetailsActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreen = ({ match }) => {
     const dispatch = useDispatch();
@@ -26,7 +28,11 @@ const ProductScreen = ({ match }) => {
                 Go Back
             </Link>
 
-            {name && (
+            {loading ? (
+                <Loader />
+            ) : error ? (
+                <Message variant={'danger'}>{error}</Message>
+            ) : (
                 <Row>
                     <Col md={6}>
                         <Image src={image} alt={name} fluid />
