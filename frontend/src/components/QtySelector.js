@@ -1,7 +1,6 @@
 import { Row, Col, Form } from 'react-bootstrap';
 
 const QtySelector = ({ qty, setQty, countInStock }) => {
-    console.log(qty);
     return (
         <Row>
             <Col>Qty </Col>
