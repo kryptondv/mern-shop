@@ -6,7 +6,7 @@ const QtySelector = ({ qty, setQty, countInStock }) => {
             <Col>Qty </Col>
 
             <Col>
-                <Form.Control as="select" value={qty} onChange={({ target }) => setQty(target.value)}>
+                <Form.Control as="select" value={qty} onChange={({ target }) => setQty(+target.value)}>
                     {[...Array(countInStock)].map((item, i) => {
                         const val = i + 1;
                         return (
