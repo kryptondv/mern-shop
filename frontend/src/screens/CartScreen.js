@@ -79,6 +79,14 @@ const CartScreen = ({ match, location, history }) => {
                             <h2>Subtotal ({getSubtotalCount()})</h2>$
                             {cartItems.reduce((acc, { price, qty }) => acc + price * qty, 0).toFixed(2)}
                         </ListGroup.Item>
+                        <ListGroup.Item>
+                            <Link
+                                className={`btn btn-dark btn-block ${cartItems.length === 0 && 'disabled'}`}
+                                to="/login?redirect=shipping"
+                            >
+                                Proceed to checkout
+                            </Link>
+                        </ListGroup.Item>
                     </ListGroup>
                 </Card>
             </Col>
