@@ -5,12 +5,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
         case CART_ADD_ITEM:
             const item = action.payload;
-            const existItem = state.cartItems.find(x => x.product === item.product);
+            const existItem = state.cartItems.find(item => item.product === item.product);
 
             if (existItem) {
                 return {
                     ...state,
-                    cartItems: state.cartItems.map(x => (x.product === existItem.product ? item : x)),
+                    cartItems: state.cartItems.map(item => (item.product === existItem.product ? item : item)),
                 };
             } else {
                 return {
@@ -20,8 +20,8 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             }
         case CART_REMOVE_ITEM:
             return {
-                loading: false,
-                product: action.payload,
+                ...state,
+                cartItems: state.cartItems.filter(item => item.product !== action.payload),
             };
         default:
             return state;

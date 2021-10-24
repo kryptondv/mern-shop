@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 
-import { addToCart } from '../actions/cartItems';
+import { addToCart, removeFromCart } from '../actions/cartItems';
 import Message from '../components/Message';
 import QtySelector from '../components/QtySelector';
 
@@ -17,7 +17,9 @@ const CartScreen = ({ match, location, history }) => {
 
     const { cartItems } = useSelector(({ cart }) => cart);
 
-    const removeFromCart = id => {};
+    const removeFromCartHandler = id => {
+        dispatch(removeFromCart(id));
+    };
 
     const changeProductQty = (val, product) => {
         dispatch(addToCart(product, val));
@@ -62,7 +64,11 @@ const CartScreen = ({ match, location, history }) => {
                                         ></QtySelector>
                                     </Col>
                                     <Col md={2}>
-                                        <Button type="button" variant="light" onClick={() => removeFromCart(product)}>
+                                        <Button
+                                            type="button"
+                                            variant="light"
+                                            onClick={() => removeFromCartHandler(product)}
+                                        >
                                             <FaTrash></FaTrash>Remove
                                         </Button>
                                     </Col>
